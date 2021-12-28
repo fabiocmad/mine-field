@@ -33,9 +33,26 @@ def get_player_move():
     """
     Get player movement choice on mine field
     """
-    column = input("Please choose a column: ")
-    row = input("Please choose a row: ")
+    print("Please choose a column and a row, separated by comas. ")
+    print("Example: 3, 4")
+    movement_data = input("Please choose: ")
 
-    print(f'You choose column {column} and row {row}')
+    movement_data = movement_data.split(",")
+    validate_data(movement_data)
+
+
+def validate_data(values):
+    """
+    Inside the try, check if all inputs are integers.
+    Raises ValueError if they are not integers,
+    or if theres no two values for columns and row
+    """
+    try:
+        if len(values) != 2:
+            raise ValueError(
+                f'Two values are needed, you provided {len(values)}'
+            )
+    except ValueError as e:
+        print(f'Invalid data: {e}, please try again.')
 
 get_player_move()
