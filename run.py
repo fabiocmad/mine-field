@@ -38,6 +38,7 @@ def how_to_play():
     print("To see this message again, type 'help' at any time.\n")
     print("********************************************************************************************")
     
+    
 def get_player_move():
     """
     Get player movement choice on mine field
@@ -54,6 +55,7 @@ def get_player_move():
             break
 
     return movement_data
+
 
 def validate_data(values):
     """
@@ -73,4 +75,17 @@ def validate_data(values):
 
     return True
 
+
+def update_score_worksheet(data):
+    """
+    Update scores worksheet, add new row with the two numbers provided
+    """
+    print("Updating score worksheet...")
+    scores_worksheet = SHEET.worksheet("score")
+    scores_worksheet.append_row(data)
+    print("Score worksheet updated sussessfully.\n")
+
+
 data = get_player_move()
+score_data = [num for num in data]
+update_score_worksheet(score_data)
