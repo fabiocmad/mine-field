@@ -20,7 +20,22 @@ def get_player_name():
     print("Hello player! Please add your name:")
     print("Example: 'John', 'Michael', 'Bernard'")
 
-    data_str = input("Name: ")
-    print(f'The data provided is {data_str}')
+    user_name = input("Name: ")
 
-get_player_name()
+
+def how_to_play():
+    """
+    Rules of the game that will be shown at beginning of each game
+    Or whenever the user wants a reminder of the rules and how to play
+    """
+    
+def get_player_move():
+    """
+    Get player movement choice on mine field
+    """
+    column = input("Please choose a column: ")
+    row = input("Please choose a row: ")
+
+    print(f'You choose column {column} and row {row}')
+
+get_player_move()
