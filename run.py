@@ -42,13 +42,18 @@ def get_player_move():
     """
     Get player movement choice on mine field
     """
-    print("Please choose a column and a row, separated by comas. ")
-    print("Example: 3, 4\n")
-    movement_data = input("Please choose: ")
+    while True:
+        print("Please choose a column and a row, separated by comas. ")
+        print("Example: 3, 4\n")
+        movement_data = input("Please choose: ")
 
-    movement_data = movement_data.split(",")
-    validate_data(movement_data)
+        movement_data = movement_data.split(",")
 
+        if validate_data(movement_data):
+            print("Data is valid!")
+            break
+
+    return movement_data
 
 def validate_data(values):
     """
@@ -64,5 +69,8 @@ def validate_data(values):
             )
     except ValueError as e:
         print(f'Invalid data: {e}, please try again.')
+        return False
 
-get_player_move()
+    return True
+
+data = get_player_move()
