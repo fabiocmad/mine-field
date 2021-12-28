@@ -27,7 +27,7 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 ## About the game
 
 ## Wireframe
-![Wireframe]()
+![Wireframe](https://github.com/fabiocmad/mine-field/blob/main/images/Wireframe.png)
 
 ## How to play
 
