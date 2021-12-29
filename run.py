@@ -1,6 +1,21 @@
+import datetime
 import gspread
 import random
+import dateutil
 from google.oauth2.service_account import Credentials
+
+EASY = "easy"
+MEDIUM = "medium"
+HARD = "hard"
+
+mines_dict = {
+    EASY: 5,
+    MEDIUM: 8,
+    HARD: 10
+}
+
+EMPTY_SPACE = " "
+MINE = "*"
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -14,11 +29,11 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('mine_field')
 
 
+# Get player name at the beginning of each new game
 def get_player_name():
     """
     Get user name input
     """
-    global user_name
     print("Hello player! Please add your name:")
     print("Example: 'John', 'Michael', 'Bernard'")
 
@@ -27,6 +42,7 @@ def get_player_name():
     return user_name
 
 
+# Initial instructions and message that can be seen by the user any time within the game when 'help' is typed
 def how_to_play():
     """
     Rules of the game that will be shown at beginning of each game
@@ -43,15 +59,42 @@ def how_to_play():
     print("********************************************************************************************\n")
     
 
-def generate_map():
-    column = ["|_|","|_|","|_|","|_|","|_|","|_|","|_|","|_|","|_|","|_|",]
+# Get user choice of diffuculty level of the game
+def get_difficult_level(user_name):
+    print("Choose difficult level -> easy, medium or hard")
+    difficult_level = input(f'Hi {username}, please choose: ')
+    return difficult_level
 
-    for x in column:
-        print(x * 10)
+# Generates a new map
+def generate_map(difficult_level):
+    matrix = [
+        [EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE],
+        [EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE],
+        [EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE],
+        [EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE],
+        [EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE],
+        [EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE],
+        [EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE],
+        [EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE, EMPTY_SPACE]
+    ]
+    for i in range(mines_dict.get(difficult_level, 5)):
+        value_pos = None
+        x = 0
+        y = 0
+        while value_pos != EMPTY_SPACE:
+            x = random.randint(0, 7)
+            y = random.randint(0, 7)
+            value_pos = matrix[x][y]
+        
+        matrix[x][y] = MINE
 
-print("\n")
+    return matrix
 
-def get_player_move():
+            
+
+
+# Get player move to each of the times the player chooses their play
+def get_player_move(user_name):
     """
     Get player movement choice on mine field
     """
@@ -68,7 +111,7 @@ def get_player_move():
 
     return movement_data
 
-
+# Checks rather the data entered is in the valid format we are expecting (int, int)
 def validate_data(values):
     """
     Inside the try, check if all inputs are integers.
@@ -87,7 +130,7 @@ def validate_data(values):
 
     return True
 
-
+# Updating user input for each choice on the borad, onto the google sheet file
 def update_score_worksheet(data):
     """
     Update scores worksheet, add new row with the two numbers provided
@@ -97,12 +140,46 @@ def update_score_worksheet(data):
     scores_worksheet.append_row(data)
     print("Score worksheet updated sussessfully.\n")
 
-def new_game():
+# Starts a new game with instructions, and collects the name of the new user
+def init_game():
     how_to_play()
-    get_player_name()
+    user_name = get_player_name()
+    # get diificult level
+    difficult_level = EASY
+    map = generate_map(difficult_level)
+    # press key to start
+    start_time_game = datetime.datetime()
+    game_state = "progress"
+
+    return (user_name, difficult_level, start_time_game, game_state, map)
 
 
-new_game()
-data = get_player_move()
-score_data = [num for num in data]
-update_score_worksheet(score_data)
+def game_loop(user_name, initial_game_state, map):
+    game_state = initial_game_state
+    
+    while game_state == "progress":
+        data = get_player_move(user_name)
+
+
+    end_time_game = datetime.datetime()
+    return (game_state, map, end_time_game)
+
+def game_completed():
+    score_data = [num for num in data]
+    update_score_worksheet(score_data)
+    pass
+
+def game_failed():
+    pass
+
+(user_name, difficult_level, start_time_game, game_state, map) = init_game()
+(game_state, map, end_time_game) = game_loop(user_name, game_state, map)
+if game_state == "failed":
+    game_failed(user_name, difficult_level)
+elif game_state == "completed":
+    duration = dateutil.relativedelta.relativedelta(end_time_game, start_time_game)
+    duration_text = "%d hours, %d minutes and %d seconds" % (duration.hours, duration.minutes, duration.seconds)
+    game_completed(user_name, difficult_level, duration_text)
+
+
+
