@@ -23,6 +23,7 @@ def get_player_name():
     print("Example: 'John', 'Michael', 'Bernard'")
 
     user_name = input("Name: ")
+    print("\n")
     return user_name
 
 
@@ -31,7 +32,7 @@ def how_to_play():
     Rules of the game that will be shown at beginning of each game
     Or whenever the user wants a reminder of the rules and how to play
     """
-    print("*********************** MINEFIELD - Rules of the game. ***********************\n")
+    print("*********************** MINEFIELD - Rules of the game. ************************************\n")
     print("The game begins with the board covered in tiles. Click on any tile to uncover it.")
     print("Choose a column and a row respectively when prompted.")
     print("If not a mine, a number of close mines will be shown. This will help you deduce where the mines are so that you can mark them")
@@ -39,13 +40,16 @@ def how_to_play():
     print("If you hit a mine, game is over.")
     
     print("To see this message again, type 'help' at any time.\n")
-    print("********************************************************************************************")
+    print("********************************************************************************************\n")
     
 
 def generate_map():
-    for x in range(10):
-        print("|_|_|_|_|_|_|_|_|_|_|")
-    print("\n")
+    column = ["|_|","|_|","|_|","|_|","|_|","|_|","|_|","|_|","|_|","|_|",]
+
+    for x in column:
+        print(x * 10)
+
+print("\n")
 
 def get_player_move():
     """
@@ -93,11 +97,12 @@ def update_score_worksheet(data):
     scores_worksheet.append_row(data)
     print("Score worksheet updated sussessfully.\n")
 
+def new_game():
+    how_to_play()
+    get_player_name()
 
-how_to_play()
-get_player_name()
-generate_map()
 
+new_game()
 data = get_player_move()
 score_data = [num for num in data]
 update_score_worksheet(score_data)
