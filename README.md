@@ -25,11 +25,21 @@ The deployment terminal is set to 80 columns by 24 rows. That means that each li
 # Minefield Project
 
 ## About the game
+Minefield is a Python terminal game, which runs on a mock terminal on Heroku.
+
+Minefield is a single-player puzzle video game. The objective of the game is to clear a square board containing hidden "mines" without detonating any of them, with help from clues about the number of neighbouring mines in each field.
 
 ## Wireframe
 ![Wireframe](https://github.com/fabiocmad/mine-field/blob/main/images/Wireframe.png)
 
 ## How to play
+Minefield is based on the classid Minesweeper game, you can read more about it on https://en.wikipedia.org/wiki/Minesweeper_(video_game).
+
+In this version, the player enter their name, the level of difficulty, and the input values to open the minefield.
+
+For each non-mined guess, the surrounding spaces will reveal any close mines to that specifically move.
+
+The objetive of the game is to clear all the board without hitting any mines, if any mines are hit, the game is lost.
 
 ## Features
 ### Existing Features
