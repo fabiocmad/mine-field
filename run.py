@@ -1,4 +1,5 @@
 import gspread
+import random
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -17,10 +18,12 @@ def get_player_name():
     """
     Get user name input
     """
+    global user_name
     print("Hello player! Please add your name:")
     print("Example: 'John', 'Michael', 'Bernard'")
 
     user_name = input("Name: ")
+    return user_name
 
 
 def how_to_play():
@@ -38,19 +41,24 @@ def how_to_play():
     print("To see this message again, type 'help' at any time.\n")
     print("********************************************************************************************")
     
-    
+
+def generate_map():
+    for x in range(10):
+        print("|_|_|_|_|_|_|_|_|_|_|")
+    print("\n")
+
 def get_player_move():
     """
     Get player movement choice on mine field
     """
     while True:
-        print("Please choose a column and a row, separated by comas. ")
+        print(f"Hello {user_name}. Please choose a column and a row, separated by comas. ")
         print("Example: 3, 4\n")
-        movement_data = input("Please choose: ")
+        movement_data = input("Please choose your input or type 'help': ")
 
         movement_data = movement_data.split(",")
 
-        if validate_data(movement_data):
+        if  validate_data(movement_data):
             print("Data is valid!")
             break
 
@@ -85,6 +93,10 @@ def update_score_worksheet(data):
     scores_worksheet.append_row(data)
     print("Score worksheet updated sussessfully.\n")
 
+
+how_to_play()
+get_player_name()
+generate_map()
 
 data = get_player_move()
 score_data = [num for num in data]
