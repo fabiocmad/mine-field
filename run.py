@@ -59,10 +59,12 @@ def how_to_play():
     print("********************************************************************************************\n")
     
 
-# Get user choice of diffuculty level of the game
+# Get user choice of difficulty level of the game
 def get_difficult_level(user_name):
     print("Choose difficult level -> easy, medium or hard")
-    difficult_level = input(f'Hi {username}, please choose: ')
+    difficult_level = input(f'Hi {user_name}, please choose: ')
+    print("\n")
+
     return difficult_level
 
 # Generates a new map
@@ -90,8 +92,11 @@ def generate_map(difficult_level):
 
     return matrix
 
-            
 
+# User press enter to continue or to start the game
+def press_enter_to_start():
+    input("Press enter to start the game.")
+    # input() waits for a user input
 
 # Get player move to each of the times the player chooses their play
 def get_player_move(user_name):
@@ -144,11 +149,10 @@ def update_score_worksheet(data):
 def init_game():
     how_to_play()
     user_name = get_player_name()
-    # get diificult level
-    difficult_level = EASY
+    difficult_level = get_difficult_level(user_name)
     map = generate_map(difficult_level)
-    # press key to start
-    start_time_game = datetime.datetime()
+    press_enter_to_start()
+    start_time_game = datetime.datetime.now()
     game_state = "progress"
 
     return (user_name, difficult_level, start_time_game, game_state, map)
@@ -167,9 +171,11 @@ def game_loop(user_name, initial_game_state, map):
 def game_completed():
     score_data = [num for num in data]
     update_score_worksheet(score_data)
+    game_state = "completed"
     pass
 
 def game_failed():
+    game_state = "failed"
     pass
 
 (user_name, difficult_level, start_time_game, game_state, map) = init_game()
