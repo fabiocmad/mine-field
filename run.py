@@ -49,9 +49,9 @@ def how_to_play():
     Or whenever the user wants a reminder of the rules and how to play
     """
     print("*********************** MINEFIELD - Rules of the game. ************************************\n")
-    print("The game begins with the board covered in tiles. Click on any tile to uncover it.")
+    print("The game begins with the board covered in tiles.")
     print("Choose a column and a row respectively when prompted.")
-    print("If not a mine, a number of close mines will be shown. This will help you deduce where the mines are so that you can mark them")
+    print("If not a mine, a number of close mines will be shown. This will help you on where the mines are so that you can mark them")
     print("Objectice is to clear the board without hitting any mines.")
     print("If you hit a mine, game is over.")
     
@@ -157,7 +157,7 @@ def init_game():
 
     return (user_name, difficult_level, start_time_game, game_state, map)
 
-
+# While game is not won neither lost, this loop will continue happening
 def game_loop(user_name, initial_game_state, map):
     game_state = initial_game_state
     
@@ -168,18 +168,21 @@ def game_loop(user_name, initial_game_state, map):
     end_time_game = datetime.datetime()
     return (game_state, map, end_time_game)
 
+# To be completed
 def game_completed():
     score_data = [num for num in data]
     update_score_worksheet(score_data)
     game_state = "completed"
     pass
 
+# To be completed
 def game_failed():
     game_state = "failed"
     pass
 
 (user_name, difficult_level, start_time_game, game_state, map) = init_game()
 (game_state, map, end_time_game) = game_loop(user_name, game_state, map)
+
 if game_state == "failed":
     game_failed(user_name, difficult_level)
 elif game_state == "completed":
