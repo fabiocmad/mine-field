@@ -42,13 +42,26 @@ For each non-mined guess, the surrounding spaces will reveal any close mines to 
 The objetive of the game is to clear all the board without hitting any mines, if any mines are hit, the game is lost.
 
 ## Features
-![1](https://github.com/fabiocmad/mine-field/blob/main/images/intro.png)
-![2](https://github.com/fabiocmad/mine-field/blob/main/images/level_input.png)
-![3](https://github.com/fabiocmad/mine-field/blob/main/images/map_scratch.png)
-![4](https://github.com/fabiocmad/mine-field/blob/main/images/name_input.png)
-![5](https://github.com/fabiocmad/mine-field/blob/main/images/updating_worksheet.png)
-![6](https://github.com/fabiocmad/mine-field/blob/main/images/data_validation.png)
+
 ### Existing Features
+
+#### How to Play
+![howToPlay](https://github.com/fabiocmad/mine-field/blob/main/images/intro.png)
+
+#### Choose difficulty level
+![level](https://github.com/fabiocmad/mine-field/blob/main/images/level_input.png)
+
+#### Map
+![map](https://github.com/fabiocmad/mine-field/blob/main/images/map_scratch.png)
+
+#### Get user name
+![username](https://github.com/fabiocmad/mine-field/blob/main/images/name_input.png)
+
+#### User input data validation
+![validationOne](https://github.com/fabiocmad/mine-field/blob/main/images/updating_worksheet.png)
+![validationTwo](https://github.com/fabiocmad/mine-field/blob/main/images/data_validation.png)
+
+
 ### Future Features
 
 ## Data Model
