@@ -46,21 +46,67 @@ The objetive of the game is to clear all the board without hitting any mines, if
 ### Existing Features
 
 #### How to Play
-![howToPlay](https://github.com/fabiocmad/mine-field/blob/main/images/intro.png)
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/intro.png"/>
+</p>
 
 #### Choose difficulty level
-![level](https://github.com/fabiocmad/mine-field/blob/main/images/level_input.png)
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/level_input.png"/>
+</p>
 
 #### Map
-![map](https://github.com/fabiocmad/mine-field/blob/main/images/map_scratch.png)
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/map_scratch.png"/>
+</p>
+
+#### Map Updated
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/map_updated.png"/>
+</p>
 
 #### Get user name
-![username](https://github.com/fabiocmad/mine-field/blob/main/images/name_input.png)
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/name_input.png"/>
+</p>
+
+#### Name Validation
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/name_validation.png"/>
+</p>
 
 #### User input data validation
-![validationOne](https://github.com/fabiocmad/mine-field/blob/main/images/updating_worksheet.png)
-![validationTwo](https://github.com/fabiocmad/mine-field/blob/main/images/data_validation.png)
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/updating_worksheet.png"/>
+</p>
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/data_validation.png"/>
+</p>
 
+#### Help during the game
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/help.png"/>
+</p>
+
+#### Level Input Validation
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/level_validator.png"/>
+</p>
+
+#### Game lost
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/game_lost.png"/>
+</p>
+
+#### PEP8 Before
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/pep8_before.png"/>
+</p>
+
+#### PEP8 After
+<p align="center">
+   <img src="https://github.com/fabiocmad/mine-field/blob/main/images/pep8_after.png"/>
+</p>
 
 ### Future Features
 
