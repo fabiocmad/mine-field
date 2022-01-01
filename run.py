@@ -28,20 +28,20 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('mine_field')
 
 
-# Get player name at the beginning of each new game
 def get_player_name():
     """
-    Get user name input
+    Get player name at the beginning of each new game
     """
     print("Hello player! Please add your name:")
     print("Example: 'John', 'Michael', 'Bernard'")
 
     user_name = input("Name: ")
     print("\n")
+    while not user_name:
+        user_name = input("We really need to know your name: ")
     return user_name
 
 
-# Initial instructions and message that can be seen by the user any time within the game when 'help' is typed
 def how_to_play():
     """
     Rules of the game that will be shown at beginning of each game
@@ -71,24 +71,30 @@ def get_difficult_level(user_name):
         if difficult_level == 'easy':
             difficult = True
             difficult_level = EASY
+            print("\n")
             pass
         elif difficult_level == 'medium':
             difficult = True
             difficult_level = MEDIUM
+            print("\n")
             pass
         elif difficult_level == 'hard':
             difficult = True
             difficult_level = HARD
+            print("\n")
             pass
         else:
-            print("Invalid data, needs to be easy, medium or hard")
+            print("Invalid data, needs to be easy, medium or hard.\n")
             difficult = False
             
     return difficult_level
     
 
-# Generates a new map
+
 def generate_map(difficult_level):
+    """
+    Generates a new map
+    """
     empty_matrix = [
         [" ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " "],
@@ -124,13 +130,14 @@ def generate_map(difficult_level):
     return matrix, empty_matrix
 
 
-# User press enter to continue or to start the game
+
 def press_enter_to_start():
+    """
+    User press enter to continue or to start the game
+    """
     input("Press enter to start the game.")
-    # input() waits for a user input
 
 
-# Get player move to each of the times the player chooses their play
 def get_player_move(user_name):
     """
     Get player movement choice on mine field
@@ -140,22 +147,28 @@ def get_player_move(user_name):
         print("Example: 3, 4\n")
         movement_data = input("Please choose your input or type 'help': ")
 
+        if movement_data == "help":
+            how_to_play()
+            continue
+
         movement_data = movement_data.split(",")
 
-        if  validate_data(movement_data):
+        if validate_data(movement_data):
             print("Data is valid!")
             break
 
     return movement_data
 
-# Checks rather the data entered is in the valid format we are expecting (int, int)
+
 def validate_data(values):
     """
     Inside the try, check if all inputs are integers.
     Raises ValueError if they are not integers,
     or if theres no two values for columns and row
     """
-    # Put comments to exaplin here
+    # Validation to try if values provided by user
+    # for choices on the map are in the format
+    # expected i.e. (5, 6), int and int
     try:
         [int(value) for value in values]
         if len(values) != 2:
@@ -178,8 +191,11 @@ def update_score_worksheet(data):
     scores_worksheet.append_row(data)
     print("Score worksheet updated sussessfully.\n")
 
-# Starts a new game with instructions, and collects the name of the new user
+
 def init_game():
+    """
+    Starts a new game with instructions, and collects the name of the new user
+    """
     how_to_play()
     user_name = get_player_name()
     difficult_level = get_difficult_level(user_name)
@@ -189,6 +205,20 @@ def init_game():
     game_state = "progress"
 
     return (user_name, difficult_level, start_time_game, game_state, map, empty_map)
+
+
+def restart_game():
+    """
+    Restart game with instructions, and collects the name of the new user
+    """
+    how_to_play()
+    user_name = get_player_name()
+    difficult_level = get_difficult_level(user_name)
+    empty_map = generate_map(difficult_level)
+    press_enter_to_start()
+    game_state = "progress"
+
+    return (user_name, difficult_level, game_state, empty_map)
 
 
 def show_player_map(player_map):
@@ -202,9 +232,14 @@ def show_player_map(player_map):
     pretty_map += "-----------------\n"
     print(pretty_map)
 
+    return (pretty_map)
 
-# While game is not won neither lost, this loop will continue happening
+
+
 def game_loop(user_name, initial_game_state, map, empty_map):
+    """
+    While game is not won neither lost, this loop will continue happening
+    """
     game_state = initial_game_state
     
     while game_state == "progress":
@@ -215,25 +250,35 @@ def game_loop(user_name, initial_game_state, map, empty_map):
         row = int(row)
         col = int(col)
         print("Found", map[row][col])
-        # if hit a bomb what happens
+        
+        if map[row][col] == MINE:
+            print("You hit a BOMB! You lost!")
+            map[row][col] = "*"
+            game_failed()
+            break
 
         map[row][col] = "X"
         empty_map[row][col] = "X"
+        
 
-    end_time_game = datetime.datetime()
+    
+    end_time_game = datetime.datetime.now()
     return (game_state, map, end_time_game)
 
-# To be completed
+
 def game_completed():
     score_data = [num for num in data]
     update_score_worksheet(score_data)
     game_state = "completed"
     pass
 
-# To be completed
+
 def game_failed():
     game_state = "failed"
+    print("Thanks for playing!")
+    print("--- End of the game --- type 'python3 run.py to restart' --- \n")
     pass
+    
 
 (user_name, difficult_level, start_time_game, game_state, map, empty_map) = init_game()
 
