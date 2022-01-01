@@ -127,15 +127,37 @@ After fixes, PEP8 did not show any issues whatsoever.
 </p>
 
 ### Future Features
+* Allow player to select board size
+* Allow player to see hints on proximity of mines if the input choosen was not a mine
+* Update Google Sheets with User name, inputs, and score based on level played and timestamp up to that point
+* Create scoreboard and print to the terminal the top players
 
 ## Data Model
+I decided to use a matrix model for my board, it allows iteration through the lists and compare user unputs with position on the board.
+
+A map is initialized and created once user chooses a level, and each level has a number of mines as values attached to a key on a dictionary. That dictionary can be updated and code maintenance and code review can easily be kept.
+
+Several functions are used based on detailed wireframe line of thought. The init_game holds the majority of the code and works along a game_loop functions for repeated actions during the game that need to happen often. Refactoring code was as important step during the thought process of this game and I tried to implement it as best as I could.
 
 ## Testing
+I tested the project with the following tests:
+
+* Passed the code on PEP8 and confirmed there are no problems
+* Gave invalid inputs on name, game actions, and levels to choose from 
+* Checked on local terminal and on Heroku
+
 ### Bugs
 #### Solved Bugs
-#### Remainging Bugs
+* When I fist wrote the project I realised I needed to spend more time on the data structure logic implementation. I was using a lot of funcions and methods separately that would potentially be better off together, realised that by fixing input by input separately (name, level, game choices)
+* I decided then to create two main functions with several methods each and work on a scrum style separating each by tasks, to make the best of the time
+
+#### Remaining Bugs
+* No remaining bugs with the features implemented so far
+
 #### Validator Testing
+* PEP8 - No erros returned after first ones were fixed
 
 ## Deployment
+
 
 ## Credits
