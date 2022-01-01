@@ -109,16 +109,19 @@ Validation for the level is needed to make sure user is writing within the expec
 </p>
 
 #### Game lost
+As explained suring introduction, in any instance the user can hit a mine. If that happens, the game is automatically lost, and the objective is to clear the board without hitting any mines.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/game_lost.png"/>
 </p>
 
 #### PEP8 Before
+Duriong PEP8 verification a few errors were foung, mostly on too many spaces, or lines too long that would not fit the terminal. Those errors were fixed.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/pep8_before.png"/>
 </p>
 
 #### PEP8 After
+After fixes, PEP8 did not show any issues whatsoever.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/pep8_after.png"/>
 </p>
