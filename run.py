@@ -50,7 +50,8 @@ def how_to_play():
     print("******** MINEFIELD - Rules of the game. *********************\n")
     print("The game begins with the board covered in tiles.")
     print("Choose a column and a row respectively when prompted.")
-    print("Objectice is to clear the board without hitting any mines.")
+    print("Choose from 0, 0 up to 7, 7 for columns and rows.")
+    print("Objective is to clear the board without hitting any mines.")
     print("If you hit a mine, game is over.")
     print("To see this message again, type 'help' at any time.\n")
     print("**************************************************************\n")
@@ -140,14 +141,15 @@ def get_player_move(user_name):
     """
     while True:
         print(f"Hi {user_name}. Choose a col and a row, separated by comma.")
-        print("Example: 3, 4\n")
+        print("Choose from 0, 0 up to 7, 7 for columns and rows.")
         movement_data = input("Please choose your input or type 'help': ")
 
         if movement_data == "help":
             how_to_play()
             continue
 
-        movement_data = movement_data.split(",")
+        if str(0) <= movement_data <= str(7):
+            movement_data = movement_data.split(",")
 
         if validate_data(movement_data):
             print("Data is valid!")
@@ -218,6 +220,9 @@ def restart_game():
 
 
 def show_player_map(player_map):
+    """
+    Shows a better layout for the player map
+    """
     pretty_map = ""
     for row in player_map:
         pretty_map += "-----------------\n"
@@ -246,16 +251,16 @@ def game_loop(user_name, initial_game_state, map, empty_map):
         col = int(col)
         print("Found", map[row][col])
 
+        # If user chooses a place where there was a mine, the game is lost.
         if map[row][col] == MINE:
             print("You hit a BOMB! You lost!")
             map[row][col] = "*"
             game_failed()
             break
 
-        else:
-            print("You won the game!")
+        # If theres no more empty spaces, nor X spaces, and not a mine, use won the game
+        elif (map[row][col] != "X") and (map[row][col] != MINE) and (map[row][col] != " "):
             game_completed()
-            break
 
         map[row][col] = "X"
         empty_map[row][col] = "X"
