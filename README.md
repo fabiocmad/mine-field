@@ -144,3 +144,9 @@ I tested the project with the following tests:
 
 
 ## Credits
+https://stackoverflow.com/questions/35589938/input-string-only
+https://www.w3schools.com/python/python_while_loops.asp
+https://stackoverflow.com/questions/16635073/validating-user-input-strings-in-python
+https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
+https://www.w3schools.com/python/python_booleans.asp
+
