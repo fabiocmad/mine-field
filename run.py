@@ -58,33 +58,34 @@ def how_to_play():
     print("********************************************************************************************\n")
 
 
-# Get user choice of difficulty level of the game
-def get_difficult_level(user_name):
-    difficult_level = False
 
-    while not difficult_level:
+def get_difficult_level(user_name):
+    """
+    Get user choice of difficulty level of the game and validate the data
+    """
+    difficult = False
+
+    while not difficult:
         difficult_level = input(f'Hi {user_name}, please choose difficult level -> easy, medium or hard: ')
 
         if difficult_level == 'easy':
-            difficult_level = True
+            difficult = True
+            difficult_level = EASY
             pass
         elif difficult_level == 'medium':
-            difficult_level = True
+            difficult = True
+            difficult_level = MEDIUM
             pass
         elif difficult_level == 'hard':
-            difficult_level = True
+            difficult = True
+            difficult_level = HARD
             pass
         else:
             print("Invalid data, needs to be easy, medium or hard")
-            difficult_level = False
+            difficult = False
             
-
-    # print("Choose difficult level -> easy, medium or hard")
-    # difficult_level = input(f'Hi {user_name}, please choose: ')
-  
-    # print("\n")
-
     return difficult_level
+    
 
 # Generates a new map
 def generate_map(difficult_level):
