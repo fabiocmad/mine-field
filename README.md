@@ -44,33 +44,43 @@ The objetive of the game is to clear all the board without hitting any mines, if
 ## Features
 
 ### Existing Features
+* Random board generation of mines
+* User chooses level of difficulty
+* Player cannot see where the mines were randomly placed
 
 #### How to Play
+Instructions on how to play are given at the beggining of the game. Player can get familiar with the objective and gets instructions how to get help during the game if needed.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/intro.png"/>
 </p>
 
 #### Choose difficulty level
+Player can choose between "easy", "medium" and "hard" levels. Each level has a hidden code on the backend with a dictionary that has key:values depending on the difficulty the user chooses. The harder the level, the bigger will be the number of mines ramdonly placed at the board.
+
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/level_input.png"/>
 </p>
 
 #### Map
+After difficulty is choosen, the map is generated according to the respective number of mine of that level.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/map_scratch.png"/>
 </p>
 
 #### Map Updated
+When user starts inputing their moves, an updated map is printed for each turn, to show the user the movements they have already done.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/map_updated.png"/>
 </p>
 
 #### Get user name
+At the beginning of each game, user needs to provide their names. If gives a more personalised experience and in the future that data can be used to store values and scores, as it will be mentiopned on the "Future Implementations" of this readme file, for more information.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/name_input.png"/>
 </p>
 
 #### Name Validation
+Once user adds their name, a validation is needed to make sure that theres no black spaces or that user is not just hitting enter, thus in such cases, a while loop keeps asking the questions until we have an expected answer, in ordert to go ahead with the game.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/name_validation.png"/>
 </p>
