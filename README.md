@@ -137,7 +137,7 @@ I tested the project with the following tests:
 * PEP8 - No erros returned after first ones were fixed
 
 ## Deployment
-* Deployment on Herokuocorred with no issues and test was succesfull.
+* Deployment on Heroku ocurred with no issues and test was succesfull.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/heroku.png"/>
 </p>
