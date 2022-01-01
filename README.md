@@ -86,19 +86,24 @@ Once user adds their name, a validation is needed to make sure that theres no bl
 </p>
 
 #### User input data validation
+I created a test on a google sheet to make sure the data could be transferred on a future ocasion (user name, inputs, level choices and timestamp for example) that data could be user to improve user experience with time - this will be mentioned on future implementation section on this file too.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/updating_worksheet.png"/>
 </p>
+
+Data validation is needed on the inputs for the map choices to make sure we cover any potential gaps from the user. In this case, the validation occurs to make sure the data is not empty and not a radom string, and if so, flags to the user that the format is not the expected, and that a new input should be typed, considering the correct parameters.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/data_validation.png"/>
 </p>
 
 #### Help during the game
+During the game, and as explained on the intro of the game, user can ask for 'help' at anytime. This will call a introduction function that will print to the terminal the rules of the game again, and cthe game can continue as normal.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/help.png"/>
 </p>
 
 #### Level Input Validation
+Validation for the level is needed to make sure user is writing within the expected parameters. In this case they are "easy", "medium" and "hard" as described on the printed message requesting such data. In case the data difer from expectation, a new message is printed to the terminal reminding user what needs to be typed and which choices they have to do so.
 <p align="center">
    <img src="https://github.com/fabiocmad/mine-field/blob/main/images/level_validator.png"/>
 </p>
