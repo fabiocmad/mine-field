@@ -84,7 +84,7 @@ def get_dif_level(user_name):
         else:
             print("Invalid data, needs to be easy, medium or hard.\n")
             difficult = False
-   
+ 
     return dif_level
 
 
@@ -112,7 +112,7 @@ def generate_map(dif_level):
         [" ", " ", " ", " ", " ", " ", " ", " "],
         [" ", " ", " ", " ", " ", " ", " ", " "]
     ]
- 
+
     for i in range(mines_dict.get(dif_level, 5)):
         value_pos = None
         x = 0
@@ -121,7 +121,7 @@ def generate_map(dif_level):
             x = random.randint(0, 7)
             y = random.randint(0, 7)
             value_pos = matrix[x][y]
-     
+    
         matrix[x][y] = MINE
 
     return matrix, empty_matrix
@@ -279,5 +279,4 @@ def game_failed():
 
 
 (user_name, dif_level, st_time, game_state, map, empty_map) = init_game()
-
 (game_state, map, end_time) = game_loop(user_name, game_state, map, empty_map)
